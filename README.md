@@ -1,2 +1,2 @@
 # Retro-Runners
-TechAxom hackathon public repo
+TechAxom Hackathon
