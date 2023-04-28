@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+
+    <title>Renbarsell</title>
+  </head>
+
+  <body>
+    <!-- =============================== * navbar * ============================================ -->
+
+    <header>
+      <nav>
+        <div class="brand">
+          <div x-data="{ isOpen: false }" class="sidebar-container">
+            <!-- Mobile sidebar toggle button -->
+            <button
+              class="sidebar-toggle"
+              @click="isOpen = !isOpen"
+              @click.away="isOpen = false"
+            >
+              <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Mobile sidebar -->
+            <aside class="sidebar" :class="{ 'open': isOpen }">
+              <!-- Sidebar content -->
+              <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Buy</a></li>
+                <li><a href="#">Rent</a></li>
+                <li><a href="#">Barter</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#"></a></li>
+              </ul>
+            </aside>
+          </div>
+          <h1>Renbarsell</h1>
+        </div>
+
+        <div class="search-bar">
+          <form action="">
+            <select name="category" id="cars">
+              <option value="volvo">All</option>
+              <option value="volvo">Books</option>
+              <option value="saab">Equipments</option>
+            </select>
+            <input
+              type="text"
+              placeholder="Search by product name, category, etc"
+            />
+            <button type="submit"><i class="fas fa-search"></i></button>
+          </form>
+        </div>
+
+        <div class="buttons">
+          <!-- HTML code for the popup -->
+          <span x-data="{ open: false }">
+            <!-- Button to open the popup -->
+            <button @click="open = true" class="btn-white">
+              <i class="fas fa-plus-circle"></i> <span>Add Product</span>
+            </button>
+
+            <!-- Popup container -->
+            <div x-show="open" class="popup" @click.away="open = false">
+              <!-- Popup content -->
+              <div class="popup-content">
+                <form action="" class="addpost">
+                  <!-- Heading -->
+                  <h2>Add Product</h2>
+                  <!-- File input -->
+                  <div>
+                    <label for="file">Product Image:</label>
+                    <input type="file" id="file" name="file" />
+                  </div>
+                  <!-- Caption input -->
+                  <div>
+                    <label for="caption">Description:</label>
+                    <input type="text" id="caption" name="caption" />
+                  </div>
+
+                  <div>
+                    <label for="caption">Price:</label>
+                    <input type="text" id="caption" name="caption" />
+                  </div>
+
+                  <div>
+                    <label for="caption">Sell,Rent or Barter:</label>
+                    <select name="category" id="cars">
+                      <option value="volvo">Sell</option>
+                      <option value="volvo">Rent</option>
+                      <option value="saab">Barter</option>
+                    </select>
+                  </div>
+
+                  <!-- Add Post button -->
+                  <button>Add Product</button>
+                  <!-- Close button -->
+                  <!-- <button @click="open = false">Close</button> -->
+                </form>
+              </div>
+            </div>
+          </span>
+
+          <span x-data="{ open: false }">
+            <button class="btn" @click="open = true">
+              <i class="fas fa-sign-in-alt"></i> <a href="#">Login</a>
+            </button>
+
+            <!-- Popup container -->
+            <div x-cloak x-show="open" class="popup" @click.away="open = false">
+              <!-- Popup content -->
+              <div class="popup-content">
+                <!-- Heading -->
+                <h2>Login to Renbarsell</h2>
+
+                <!-- Login form -->
+                <form>
+                  <!-- Email input -->
+                  <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" />
+                  </div>
+
+                  <!-- Password input -->
+                  <div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" />
+                  </div>
+
+                  <!-- Login button -->
+                  <button type="submit">Login</button>
+                </form>
+
+                <!-- Close button -->
+                <button class="close-btn" @click="open = false">Close</button>
+              </div>
+            </div>
+          </span>
+        </div>
+      </nav>
+
+      <div class="sub-navigation">
+        <ul>
+          <li><a href="">Home</a></li>
+          <li><a href="">Buy</a></li>
+          <li><a href="">Rent</a></li>
+          <li><a href="">Barter</a></li>
+          <li><a href="">About</a></li>
+          <li><a href="">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="mobile-search-bar">
+        <form action="">
+          <select name="category" id="cars">
+            <option value="volvo">All</option>
+            <option value="volvo">Books</option>
+            <option value="saab">Equipments</option>
+          </select>
+          <input
+            type="text"
+            placeholder="Search by product name, category, etc"
+          />
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+      </div>
+    </header>
+
+    <!-- =============================== * ad 1 * ============================================ -->
+
+    <!-- <div class="ad_img">
+      <img src="images/book.jpg/>
+      <i class="fa-regular fa-rectangle-xmark" id="ad_icon"></i>
+    </div> -->
+
+    <!-- =============================== * product * ============================================ -->
+    <div class="main-container">
+      <div class="recommend">
+        <h2>Our Recomendations</h2>
+      </div>
+      <div class="product">
+        <div class="First_row">
+          <div class="box">
+            <div class="image container">
+              <img src="images/book.jpg" />
+            </div>
+            <div class="box_description">
+              <h2>₹500</h2>
+              <p>Engineering Mechanics book </p>
+              <p>Today</p>
+            </div>
+            <div class="box_options">
+              <div class="box_options_1">
+                
+                <button class="box_button_spacing buy">buy</button>
+                <button class="box_button_spacing barter">barter</button>
+                <button class="box_button_spacing rent">rent</button>
+              </div>
+              <a href="product_details.html">
+                <div class="box_options_2">
+                  <button class="box_addBtn"><i class="fas fa-plus"></i></button>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="box">
+            <img src="images/book.jpg" />
+            <div class="box_description">
+              <h2>₹200</h2>
+              <p>T square</p>
+              <p>JUL 27</p>
+            </div>
+            <div class="box_options">
+              <div class="box_options_1">
+
+                <button class="box_button_spacing  buy">buy</button>
+                <button class="box_button_spacing  barter">barter</button>
+                <button class="box_button_spacing  rent">rent</button>
+              </div>
+              <div class="box_options_2">
+                <button class="box_addBtn"><i class="fas fa-plus"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="box">
+            <img src="images/book.jpg" />
+            <div class="box_description">
+              <h2>₹700</h2>
+              <p>Arduino</p>
+              <p>Today</p>
+            </div>
+            <div class="box_options">
+              <div class="box_options_1">
+
+                <button class="box_button_spacbuy buy">buy</button>
+                <button class="box_button_spacing barter">barter</button>
+                <button class="box_button_spacing rent">rent</button>
+              </div>
+              <div class="box_options_2">
+                <button class="box_addBtn"><i class="fas fa-plus"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="box">
+            <img src="images/book.jpg" />
+            <div class="box_description">
+              <h2>₹8,00,000</h2>
+              <p>Mitsubishi Pajero (2012)</p>
+              <p>Today</p>
+            </div>
+            <div class="box_options">
+              <div class="box_options_1">
+
+                <button class="box_button_spacing buy">buy</button>
+                <button class="box_button_spacing barter">barter</button>
+                <button class="box_button_spacing rent">rent</button>
+              </div>
+              <div class="box_options_2">
+                <button class="box_addBtn"><i class="fas fa-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="First_row">
+          <div class="box">
+            <img src="images/book.jpg" />
+            <div class="box_description">
+              <h2>₹800</h2>
+              <p>Black Jeans for man</p>
+              <p>DEC 24</p>
+            </div>
+            <div class="box_options">
+              <div class="box_options_1">
+
+                <button class="box_button_spacing buy">buy</button>
+                <button class="box_button_spacing barter">barter</button>
+                <button class="box_button_spacing rent">rent</button>
+              </div>
+              <div class="box_options_2">
+                <button class="box_addBtn"><i class="fas fa-plus"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="box">
+            <img src="images/book.jpg" />
+            <div class="box_description">
+              <h2>₹3,000</h2>
+              <p>Pricise corrom board</p>
+              <p>JAN 29</p>
+            </div>
+            <div class="box_options">
+              <div class="box_options_1">
+
+                <button class="box_button_spacing buy">buy</button>
+                <button class="box_button_spacing barter">barter</button>
+                <button class="box_button_spacing rent">rent</button>
+              </div>
+              <div class="box_options_2">
+                <button class="box_addBtn"><i class="fas fa-plus"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="box">
+            <img src="images/book.jpg" />
+            <div class="box_description">
+              <h2>₹3,800</h2>
+              <p>CrossBeat Torq Buds</p>
+              <p>Today</p>
+            </div>
+            <div class="box_options">
+              <div class="box_options_1">
+
+                <button class="box_button_spacing buy">buy</button>
+                <button class="box_button_spacing barter">barter</button>
+                <button class="box_button_spacing rent">rent</button>
+              </div>
+              <div class="box_options_2">
+                <button class="box_addBtn"><i class="fas fa-plus"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="box">
+            <img src="images/book.jpg" />
+            <div class="box_description">
+              <h2>₹39,000</h2>
+              <p>Nikon D7000 DSLR camera</p>
+              <p>FEB 02</p>
+            </div>
+            <div class="box_options">
+              <div class="box_options_1">
+
+                <button class="box_button_spacing buy">buy</button>
+                <button class="box_button_spacing barter">barter</button>
+                <button class="box_button_spacing rent">rent</button>
+              </div>
+              <div class="box_options_2">
+                <button class="box_addBtn"><i class="fas fa-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="First_row">
+          <div class="box">
+            <img src="images/book.jpg" />
+            <div class="box_description">
+              <h2>₹400</h2>
+              <p>Black jacket</p>
+              <p>FEB 11</p>
+            </div>
+            <div class="box_options">
+              <div class="box_options_1">
+
+                <button class="box_button_spacing buy">buy</button>
+                <button class="box_button_spacing barter">barter</button>
+                <button class="box_button_spacing rent">rent</button>
+              </div>
+              <div class="box_options_2">
+                <button class="box_addBtn"><i class="fas fa-plus"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="box">
+            <img src="images/book.jpg" />
+            <div class="box_description">
+              <h2>₹3,400</h2>
+              <p>LG Washing machine</p>
+              <p>Today</p>
+            </div>
+            <div class="box_options">
+              <div class="box_options_1">
+
+                <button class="box_button_spacing buy">buy</button>
+                <button class="box_button_spacing barter">barter</button>
+                <button class="box_button_spacing rent">rent</button>
+              </div>
+              <div class="box_options_2">
+                <button class="box_addBtn"><i class="fas fa-plus"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="box">
+            <img src="images/book.jpg" />
+            <div class="box_description">
+              <h2>₹700</h2>
+              <p>Running Shoe (athletes)</p>
+              <p>FEB 25</p>
+            </div>
+            <div class="box_options">
+              <div class="box_options_1">
+
+                <button class="box_button_spacing buy">buy</button>
+                <button class="box_button_spacing barter">barter</button>
+                <button class="box_button_spacing rent">rent</button>
+              </div>
+              <div class="box_options_2">
+                <button class="box_addBtn"><i class="fas fa-plus"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="box">
+            <img src="images/book.jpg" />
+            <div class="box_description">
+              <h2>₹35,000</h2>
+              <p>Antique premium teak wood Sofa set</p>
+              <p>Today</p>
+            </div>
+            <div class="box_options">
+              <div class="box_options_1">
+
+                <button class="box_button_spacing buy">buy</button>
+                <button class="box_button_spacing barter">barter</button>
+                <button class="box_button_spacing rent">rent</button>
+              </div>
+              <div class="box_options_2">
+                <button class="box_addBtn"><i class="fas fa-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="First_row">
+          <div class="box">
+            <img src="images/book.jpg" />
+            <div class="box_description">
+              <h2>₹3,35,000</h2>
+              <p>Hyundai I20 (2010)</p>
+              <p>JAN 14</p>
+            </div>
+            <div class="box_options">
+              <div class="box_options_1">
+
+                <button class="box_button_spacing buy">buy</button>
+                <button class="box_button_spacing barter">barter</button>
+                <button class="box_button_spacing rent">rent</button>
+              </div>
+              <div class="box_options_2">
+                <button class="box_addBtn"><i class="fas fa-plus"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="box">
+            <img src="images/book.jpg" />
+            <div class="box_description">
+              <h2>₹6,000</h2>
+              <p>dining table</p>
+              <p>JUN 10</p>
+            </div>
+            <div class="box_options">
+              <div class="box_options_1">
+
+                <button class="box_button_spacing buy">buy</button>
+                <button class="box_button_spacing barter">barter</button>
+                <button class="box_button_spacing rent">rent</button>
+              </div>
+              <div class="box_options_2">
+                <button class="box_addBtn"><i class="fas fa-plus"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="box">
+            <img src="images/book.jpg" />
+            <div class="box_description">
+              <h2>₹1,200</h2>
+              <p>Mens fastrack watch</p>
+              <p>JAN 7</p>
+            </div>
+            <div class="box_options">
+              <div class="box_options_1">
+
+                <button class="box_button_spacing buy">buy</button>
+                <button class="box_button_spacing barter">barter</button>
+                <button class="box_button_spacing rent">rent</button>
+              </div>
+              <div class="box_options_2">
+                <button class="box_addBtn"><i class="fas fa-plus"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="box">
+            <img src="images/book.jpg" />
+            <div class="box_description">
+              <h2>₹2,100</h2>
+              <p>Pure Metal Dumbbells</p>
+              <p>Today</p>
+            </div>
+            <div class="box_options">
+              <div class="box_options_1">
+
+                <button class="box_button_spacing buy">buy</button>
+                <button class="box_button_spacing barter">barter</button>
+                <button class="box_button_spacing rent">rent</button>
+              </div>
+              <div class="box_options_2">
+                <button class="box_addBtn"><i class="fas fa-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- =============================== * Load more * ============================================ -->
+
+      <div class="LOde_more">
+        <button id="Lode_more_id">Load More</button>
+
+        <div class="lode-More_products" id="lode_more_products_id">
+          <div class="First_row">
+            <div class="box">
+              <a href="#"></a>
+              <img src="images/book.jpg" />
+              <div class="box_description">
+                <h2>₹3,500</h2>
+                <p>Mi TV Stick</p>
+                <p>Today</p>
+              </div>
+                            <div class="box_options">
+                <div class="box_options_1">
+
+                  <button class="box_button_spacing buy box_active">buy</button>
+                  <button class="box_button_spacing barter box_active">barter</button>
+                  <button class="box_button_spacing rent box_active">rent</button>
+                </div>
+                <div class="box_options_2">
+                  <button class="box_addBtn"><i class="fas fa-plus"></i></button>
+                </div>
+              </div>
+            </div>
+            <div class="box">
+              <img src="images/book.jpg" />
+              <div class="box_description">
+                <h2>₹4800</h2>
+                <p>xbox one s</p>
+                <p>JUL 27</p>
+              </div>
+            </div>
+                          <div class="box_options">
+                <div class="box_options_1">
+
+                  <button class="box_button_spacing buy box_active">buy</button>
+                  <button class="box_button_spacing barter box_active">barter</button>
+                  <button class="box_button_spacing rent box_active">rent</button>
+                </div>
+                <div class="box_options_2">
+                  <button class="box_addBtn"><i class="fas fa-plus"></i></button>
+                </div>
+              </div>
+            <div class="box">
+              <img src="images/book.jpg" />
+              <div class="box_description">
+                <h2>₹7000</h2>
+                <p>Refrigerator</p>
+
+                <p>Today</p>
+              </div>
+            </div>
+                          <div class="box_options">
+                <div class="box_options_1">
+
+                  <button class="box_button_spacing buy box_active">buy</button>
+                  <button class="box_button_spacing barter box_active">barter</button>
+                  <button class="box_button_spacing rent box_active">rent</button>
+                </div>
+                <div class="box_options_2">
+                  <button class="box_addBtn"><i class="fas fa-plus"></i></button>
+                </div>
+              </div>
+            <div class="box">
+              <img src="images/book.jpg" />
+              <div class="box_description">
+                <h2>₹8,00,000</h2>
+                <p>Mitsubishi Pajero (2012)</p>
+
+                <p>Today</p>
+              </div>
+                            <div class="box_options">
+                <div class="box_options_1">
+
+                  <button class="box_button_spacing buy box_active">buy</button>
+                  <button class="box_button_spacing barter box_active">barter</button>
+                  <button class="box_button_spacing rent box_active">rent</button>
+                </div>
+                <div class="box_options_2">
+                  <button class="box_addBtn"><i class="fas fa-plus"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="First_row">
+            <div class="box">
+              <img src="images/book.jpg" />
+              <div class="box_description">
+                <h2>₹800</h2>
+                <p>Black Jeans for man</p>
+
+                <p>DEC 24</p>
+              </div>
+                            <div class="box_options">
+                <div class="box_options_1">
+
+                  <button class="box_button_spacing buy box_active">buy</button>
+                  <button class="box_button_spacing barter box_active">barter</button>
+                  <button class="box_button_spacing rent box_active">rent</button>
+                </div>
+                <div class="box_options_2">
+                  <button class="box_addBtn"><i class="fas fa-plus"></i></button>
+                </div>
+              </div>
+            </div>
+            <div class="box">
+              <img src="images/book.jpg" />
+              <div class="box_description">
+                <h2>₹3,000</h2>
+                <p>Pricise corrom board</p>
+                <p>JAN 29</p>
+              </div>
+            </div>
+            <div class="box">
+              <img src="images/book.jpg" />
+              <div class="box_description">
+                <h2>₹3,800</h2>
+                <p>CrossBeat Torq Buds</p>
+                <p>Today</p>
+              </div>
+                            <div class="box_options">
+                <div class="box_options_1">
+
+                  <button class="box_button_spacing buy box_active">buy</button>
+                  <button class="box_button_spacing barter box_active">barter</button>
+                  <button class="box_button_spacing rent box_active">rent</button>
+                </div>
+                <div class="box_options_2">
+                  <button class="box_addBtn"><i class="fas fa-plus"></i></button>
+                </div>
+              </div>
+            </div>
+            <div class="box">
+              <img src="images/book.jpg" />
+              <div class="box_description">
+                <h2>₹39,000</h2>
+                <p>Nikon D7000 DSLR camera</p>
+                <p>FEB 02</p>
+              </div>
+                            <div class="box_options">
+                <div class="box_options_1">
+
+                  <button class="box_button_spacing buy box_active">buy</button>
+                  <button class="box_button_spacing barter box_active">barter</button>
+                  <button class="box_button_spacing rent box_active">rent</button>
+                </div>
+                <div class="box_options_2">
+                  <button class="box_addBtn"><i class="fas fa-plus"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =============================== * ad 2 * ============================================ -->
+    <!-- 
+    <div class="ads_img2">
+      <img src="images/book.jpg/>
+      <i class="fa-regular fa-rectangle-xmark" id="adicon2"></i>
+    </div> -->
+
+    <!-- =============================== * footer * ============================================ -->
+
+    <footer class="footer-distributed">
+      <div class="footer-left">
+        <h3>Campus<span>Cart</span></h3>
+
+        <p class="footer-company-name">CampusCart © 2015</p>
+      </div>
+
+      <div class="footer-center">
+        <div>
+          <i class="fa fa-map-marker"></i>
+          <p><span>Assam Engineering College Rd</span>Jalukbari, Guwahati, Assam 781013</p>
+        </div>
+
+        <div>
+          <i class="fa fa-phone"></i>
+          <p>+1.555.555.5555</p>
+        </div>
+
+        <div>
+          <i class="fa fa-envelope"></i>
+          <p><a href="mailto:support@company.com">support@company.com</a></p>
+        </div>
+      </div>
+
+      <div class="footer-right">
+        <p class="footer-company-about">
+          <span>About the company</span>
+          Platform for our students for buying,selling or sharing used books,materials,instruments etc
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      
+      //  =============================== * ad 1 * ============================================
+
+      let ad_img = document.querySelector(".ad_img");
+      let ad_icon = document.getElementById("ad_icon");
+
+      ad_icon.addEventListener("click", () => {
+        ad_img.style = `display: none`;
+      });
+
+      //  =============================== * lode more * ============================================
+
+      let Lode_more_id = document.getElementById("Lode_more_id");
+      let lode_more_products_id = document.getElementById(
+        "lode_more_products_id"
+      );
+
+      Lode_more_id.addEventListener("click", () => {
+        lode_more_products_id.style = "display:block";
+        Lode_more_id.style = "display:none";
+      });
+
+      //  =============================== * ad 2 * ============================================
+
+      let adicon2 = document.getElementById("adicon2");
+      let ads_img2 = document.querySelector(".ads_img2");
+
+      adicon2.addEventListener("click", () => {
+        ads_img2.style = "display: none";
+      });
+    </script>
+  </body>
+</html>
