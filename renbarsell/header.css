@@ -171,6 +171,10 @@ header {
     background: #3498db;
     padding: 10px;
   }
+  .sub-navigation a{
+    text-decoration: none;
+    
+  }
   
   .sub-navigation ul {
     display: flex;
